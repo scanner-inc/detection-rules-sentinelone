@@ -1,0 +1,19 @@
+# schema: https://scanner.dev/schema/scanner-detection-rule.v1.json
+name: SentinelOne Threats
+description: |-
+  Detect new malicious or suspicious threats.
+enabled: true
+severity: Medium
+query_text: |-
+  %ingest.source_type:sentinel-one
+  activityType:(19 4108 4003 4109)
+  | groupbycount(data.confidencelevel)
+  | where @q.count > 0
+time_range_s: 300
+run_frequency_s: 60
+event_sink_keys:
+- medium_severity_alerts
+tags:
+- tactics.ta0002.execution
+- techniques.t1059.command_and_scripting_interpreter
+- source.sentinel-one

@@ -1,0 +1,19 @@
+# schema: https://scanner.dev/schema/scanner-detection-rule.v1.json
+name: SentinelOne Alert Passthrough
+description: |-
+  Detect new alerts in SentinelOne.
+enabled: true
+severity: High
+query_text: |-
+  %ingest.source_type:sentinel-one
+  activityType:3608
+  | groupbycount(data.severity)
+  | where @q.count > 0
+time_range_s: 300
+run_frequency_s: 60
+event_sink_keys:
+- high_severity_alerts
+tags:
+- tactics.ta0001.initial_access
+- techniques.t1078.valid_accounts
+- source.sentinel-one

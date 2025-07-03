@@ -1,0 +1,21 @@
+# schema: https://scanner.dev/schema/scanner-detection-rule.v1.json
+name: SentinelOne Unusual Ntdsutil Usage
+description: |-
+  Detect when Ntdsutil is used in a suspicious manner, e.g. to access the Ntds.dit
+  file. Malicious actors have used Ntdsutil to gain access to the Ntds.dit file.
+enabled: true
+severity: High
+query_text: |-
+  %ingest.source_type:sentinel-one
+  tgt.process.name:ntdsutil.exe
+  tgt.process.cmdline:(create ntds)
+  | groupbycount(dataSource.name)
+  | where @q.count > 0
+time_range_s: 300
+run_frequency_s: 60
+event_sink_keys:
+- high_severity_alerts
+tags:
+- tactics.ta0006.credential_access
+- techniques.t1003.os_credential_dumping
+- source.sentinel-one

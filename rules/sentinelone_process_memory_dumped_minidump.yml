@@ -1,0 +1,22 @@
+# schema: https://scanner.dev/schema/scanner-detection-rule.v1.json
+name: SentinelOne Process Memory Dumped Using Minidump
+description: |-
+  Detect the minidump function of comsvcs.dll being used to dump process memory.
+  Malicious actors have used comsvcs.dll to dump process memory, in an attempt
+  to extract credentials.
+enabled: true
+severity: High
+query_text: |-
+  %ingest.source_type:sentinel-one
+  tgt.process.name:rundll32.exe
+  tgt.process.cmdline:(MiniDump AND comsvcs)
+  | groupbycount(dataSource.name)
+  | where @q.count > 0
+time_range_s: 300
+run_frequency_s: 60
+event_sink_keys:
+- high_severity_alerts
+tags:
+- tactics.ta0006.credential_access
+- techniques.t1003.os_credential_dumping
+- source.sentinel-one

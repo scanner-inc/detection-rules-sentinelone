@@ -1,0 +1,23 @@
+# schema: https://scanner.dev/schema/scanner-detection-rule.v1.json
+name: SentinelOne Same Rule on Different Hosts
+description: |-
+  Detect when the same rule is triggered on different hosts in SentinelOne.
+  This can indicate potential initial access or lateral movement across
+  multiple systems.
+enabled: true
+severity: High
+query_text: |-
+  %ingest.source_type:sentinel-one
+  activityType:3608
+  | stats countdistinct(data.computername) as host_count by data.rulename
+  | where host_count > 1
+time_range_s: 300
+run_frequency_s: 60
+event_sink_keys:
+- high_severity_alerts
+tags:
+- tactics.ta0001.initial_access
+- tactics.ta0008.lateral_movement
+- techniques.t1190.exploit_public_facing_application
+- techniques.t1210.exploitation_of_remote_services
+- source.sentinel-one

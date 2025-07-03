@@ -1,0 +1,20 @@
+# schema: https://scanner.dev/schema/scanner-detection-rule.v1.json
+name: SentinelOne Agent Uninstalled from Multiple Hosts
+description: |-
+  Detect when SentinelOne agents are uninstalled from multiple hosts.
+  This can indicate potential defense evasion or monitoring bypass attempts.
+enabled: true
+severity: High
+query_text: |-
+  %ingest.source_type:sentinel-one
+  activityType:51
+  | countdistinct(data.computername)
+  | where @q.count > 1
+time_range_s: 300
+run_frequency_s: 60
+event_sink_keys:
+- high_severity_alerts
+tags:
+- tactics.ta0005.defense_evasion
+- techniques.t1070.indicator_removal_on_host
+- source.sentinel-one

@@ -1,0 +1,21 @@
+# schema: https://scanner.dev/schema/scanner-detection-rule.v1.json
+name: SentinelOne Windows Shadow Copies Deleted
+description: |-
+  Detect when vssadmin is used to delete shadow copies. Vssadmin.exe, a native
+  Windows utility, can be used to delete all shadow copies on a system.
+enabled: true
+severity: High
+query_text: |-
+  %ingest.source_type:sentinel-one
+  tgt.process.name:vssadmin.exe
+  tgt.process.cmdline:(delete AND shadows)
+  | groupbycount(dataSource.name)
+  | where @q.count > 0
+time_range_s: 300
+run_frequency_s: 60
+event_sink_keys:
+- high_severity_alerts
+tags:
+- tactics.ta0040.impact
+- techniques.t1490.inhibit_system_recovery
+- source.sentinel-one
