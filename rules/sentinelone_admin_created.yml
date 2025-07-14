@@ -7,7 +7,7 @@ description: |-
 enabled: true
 severity: Medium
 query_text: |-
-  %ingest.source_type:sentinel-one
+  %ingest.source_type:"sentinelone:activities"
   activityType:23
   | groupbycount(userId)
   | where @q.count > 0
@@ -18,4 +18,4 @@ event_sink_keys:
 tags:
 - tactics.ta0004.privilege_escalation
 - techniques.t1078.valid_accounts
-- source.sentinel-one
+- source.sentinelone

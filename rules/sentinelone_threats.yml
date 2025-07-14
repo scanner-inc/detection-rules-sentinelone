@@ -5,7 +5,7 @@ description: |-
 enabled: true
 severity: Medium
 query_text: |-
-  %ingest.source_type:sentinel-one
+  %ingest.source_type:"sentinelone:activities"
   activityType:(19 4108 4003 4109)
   | groupbycount(data.confidencelevel)
   | where @q.count > 0
@@ -16,4 +16,4 @@ event_sink_keys:
 tags:
 - tactics.ta0002.execution
 - techniques.t1059.command_and_scripting_interpreter
-- source.sentinel-one
+- source.sentinelone

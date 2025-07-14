@@ -7,7 +7,7 @@ description: |-
 enabled: true
 severity: High
 query_text: |-
-  %ingest.source_type:sentinel-one
+  %ingest.source_type:sentinelone
   tgt.process.name:reg.exe
   tgt.process.cmdline:(save export)
   tgt.process.cmdline:HKLM
@@ -21,4 +21,4 @@ event_sink_keys:
 tags:
 - tactics.ta0006.credential_access
 - techniques.t1003.os_credential_dumping
-- source.sentinel-one
+- source.sentinelone
