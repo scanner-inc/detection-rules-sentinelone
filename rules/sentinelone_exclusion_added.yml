@@ -5,7 +5,7 @@ description: |-
 enabled: true
 severity: Medium
 query_text: |-
-  %ingest.source_type:"sentinelone:activities"
+  %ingest.source_type:sentinel-one
   description:(added AND exclusion)
   | groupbycount(userId)
   | where @q.count > 0
@@ -16,4 +16,4 @@ event_sink_keys:
 tags:
 - tactics.ta0005.defense_evasion
 - techniques.t1070.indicator_removal_on_host
-- source.sentinelone
+- source.sentinel-one

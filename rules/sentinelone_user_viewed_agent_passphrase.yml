@@ -6,7 +6,7 @@ description: |-
 enabled: true
 severity: Medium
 query_text: |-
-  %ingest.source_type:"sentinelone:activities"
+  %ingest.source_type:sentinel-one
   activityType:64
   | groupbycount(userId)
   | where @q.count > 0
@@ -17,4 +17,4 @@ event_sink_keys:
 tags:
 - tactics.ta0006.credential_access
 - techniques.t1555.credentials_from_password_stores
-- source.sentinelone
+- source.sentinel-one
