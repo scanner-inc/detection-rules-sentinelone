@@ -6,7 +6,7 @@ description: |-
 enabled: true
 severity: High
 query_text: |-
-  %ingest.source_type:sentinel-one
+  @scnr.source_type:sentinelone
   activityType:3608
   | groupbycount(data.computername)
   | where @q.count > 1

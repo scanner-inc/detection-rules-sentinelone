@@ -7,7 +7,7 @@ description: |-
 enabled: true
 severity: High
 query_text: |-
-  %ingest.source_type:sentinel-one
+  @scnr.source_type:sentinelone
   tgt.process.name:reg.exe
   tgt.process.cmdline:(save export)
   tgt.process.cmdline:HKLM
