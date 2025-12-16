@@ -6,7 +6,7 @@ description: |-
 enabled: true
 severity: High
 query_text: |-
-  %ingest.source_type:sentinel-one
+  @scnr.source_type:sentinelone
   tgt.process.name:ntdsutil.exe
   tgt.process.cmdline:(create ntds)
   | groupbycount(dataSource.name)

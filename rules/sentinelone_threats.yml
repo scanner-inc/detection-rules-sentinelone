@@ -5,7 +5,7 @@ description: |-
 enabled: true
 severity: Medium
 query_text: |-
-  %ingest.source_type:sentinel-one
+  @scnr.source_type:sentinelone
   activityType:(19 4108 4003 4109)
   | groupbycount(data.confidencelevel)
   | where @q.count > 0
