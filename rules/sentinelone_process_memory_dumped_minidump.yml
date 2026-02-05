@@ -4,7 +4,6 @@ description: |-
   Detect the minidump function of comsvcs.dll being used to dump process memory.
   Malicious actors have used comsvcs.dll to dump process memory, in an attempt
   to extract credentials.
-enabled: true
 severity: High
 query_text: |-
   @scnr.source_type:sentinelone

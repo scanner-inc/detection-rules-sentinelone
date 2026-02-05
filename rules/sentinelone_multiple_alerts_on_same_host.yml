@@ -3,7 +3,6 @@ name: SentinelOne Multiple Alerts on Same Host
 description: |-
   Detect when multiple alerts are received from the same host in SentinelOne.
   This can indicate potential initial access or ongoing compromise.
-enabled: true
 severity: High
 query_text: |-
   @scnr.source_type:sentinelone

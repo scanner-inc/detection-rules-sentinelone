@@ -4,7 +4,6 @@ description: |-
   Detect when a registry hive is dumped. Command line utilities like
   reg.exe can be used to dump Security and/or SAM hives in an attempt
   to extract credentials.
-enabled: true
 severity: High
 query_text: |-
   @scnr.source_type:sentinelone

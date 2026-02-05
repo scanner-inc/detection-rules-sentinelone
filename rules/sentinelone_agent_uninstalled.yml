@@ -3,7 +3,6 @@ name: SentinelOne Agent Uninstalled from Multiple Hosts
 description: |-
   Detect when SentinelOne agents are uninstalled from multiple hosts.
   This can indicate potential defense evasion or monitoring bypass attempts.
-enabled: true
 severity: High
 query_text: |-
   @scnr.source_type:sentinelone

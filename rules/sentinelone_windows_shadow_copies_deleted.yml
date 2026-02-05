@@ -3,7 +3,6 @@ name: SentinelOne Windows Shadow Copies Deleted
 description: |-
   Detect when vssadmin is used to delete shadow copies. Vssadmin.exe, a native
   Windows utility, can be used to delete all shadow copies on a system.
-enabled: true
 severity: High
 query_text: |-
   @scnr.source_type:sentinelone

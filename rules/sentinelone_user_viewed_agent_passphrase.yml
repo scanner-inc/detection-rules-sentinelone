@@ -3,7 +3,6 @@ name: SentinelOne User Viewed Agent's Passphrase
 description: |-
   Detect when a user viewed an agent's passphrase in SentinelOne.
   This can indicate potential unauthorized access to credentials.
-enabled: true
 severity: Medium
 query_text: |-
   @scnr.source_type:sentinelone

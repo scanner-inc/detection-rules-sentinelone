@@ -2,7 +2,6 @@
 name: SentinelOne Exclusion Added
 description: |-
   Detect when a new exclusion is added in SentinelOne.
-enabled: true
 severity: Medium
 query_text: |-
   @scnr.source_type:sentinelone

@@ -3,7 +3,6 @@ name: SentinelOne Unusual Ntdsutil Usage
 description: |-
   Detect when Ntdsutil is used in a suspicious manner, e.g. to access the Ntds.dit
   file. Malicious actors have used Ntdsutil to gain access to the Ntds.dit file.
-enabled: true
 severity: High
 query_text: |-
   @scnr.source_type:sentinelone

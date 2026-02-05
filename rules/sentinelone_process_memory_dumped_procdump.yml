@@ -4,7 +4,6 @@ description: |-
   Detect when ProcDump is used to dump process memory. Malicious actors
   have used ProcDump to dump process memory, in an attempt to extract
   credentials.
-enabled: true
 severity: High
 query_text: |-
   @scnr.source_type:sentinelone

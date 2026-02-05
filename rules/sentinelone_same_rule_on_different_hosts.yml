@@ -4,7 +4,6 @@ description: |-
   Detect when the same rule is triggered on different hosts in SentinelOne.
   This can indicate potential initial access or lateral movement across
   multiple systems.
-enabled: true
 severity: High
 query_text: |-
   @scnr.source_type:sentinelone
