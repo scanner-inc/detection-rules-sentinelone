@@ -8,7 +8,7 @@ query_text: |-
   @scnr.source_type:sentinelone
   activityType:51
   | countdistinct(data.computername)
-  | where @q.count > 1
+  | where @q.uniq > 1
 time_range_s: 300
 run_frequency_s: 60
 event_sink_keys:
@@ -17,3 +17,15 @@ tags:
 - tactics.ta0005.defense_evasion
 - techniques.t1070.indicator_removal_on_host
 - source.sentinel-one
+tests:
+  - name: Agent uninstalled on two computers
+    now_timestamp: "2024-08-21T00:03:00.000Z"
+    dataset_inline: |
+      {"timestamp":"2024-08-21T00:02:00.000Z","@scnr.source_type":"sentinelone","activityType":51,"data":{"computername":"host-a"}}
+      {"timestamp":"2024-08-21T00:02:01.000Z","@scnr.source_type":"sentinelone","activityType":51,"data":{"computername":"host-b"}}
+    expected_detection_result: true
+  - name: Agent uninstalled on one computer
+    now_timestamp: "2024-08-21T00:03:00.000Z"
+    dataset_inline: |
+      {"timestamp":"2024-08-21T00:02:00.000Z","@scnr.source_type":"sentinelone","activityType":51,"data":{"computername":"host-a"}}
+    expected_detection_result: false
